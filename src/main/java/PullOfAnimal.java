@@ -36,18 +36,30 @@ class Pets {
         petlist.add(new Pets(9876, "Peach", "Adele", 8000));
 
         System.out.println(petlist);
-//        Pets petsarr = new Pets(petlist);
-//        System.out.println(petsarr);
         petlist.add(addPet());
         System.out.println(petlist);
+//        petlist.contains(searchPet());
+        petlist.stream()
+                .filter(Pets -> Pets.namePet.equals("Peach"))
+                .findFirst()
+                .orElse(null);
+
+
+
     }
+
 
     public static Pets addPet() {
 
         Pets newpet = new Pets(0000,"Barsik","MisterX", 2800);
-//        System.out.println(newpet);
         return newpet;
 
     }
+    public static Pets searchPet() {
+
+
+        return null;
+    }
+
 
 }
