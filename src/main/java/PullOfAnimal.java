@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 class Pets {
@@ -25,12 +24,12 @@ class Pets {
     public String toString() {
         return uid + " " + namePet+ " " + namePerson+ " " + weight;
     }
-
+    List<Pets> petlist = new ArrayList<Pets>();
 
     public static void main(String [] args) {
 
 
-        ArrayList<Pets> petlist = new ArrayList<Pets>();
+
         petlist.add(new Pets(1329, "Tortic", "Mark", 300));
         petlist.add(new Pets(3218, "Sonya", "Arch", 1200));
         petlist.add(new Pets(1324, "Iris", "Kate", 3000));
@@ -43,7 +42,13 @@ class Pets {
 //        petlist.stream()
 //                .filter(Pets -> Pets.namePet.equals("Peache"))
 //                .collect(Collectors.toList());
-
+        Collections.sort(petlist, new Comparator<Pets>() {
+            @Override
+            public int compare(Pets o1, Pets o2) {
+                return o1.toString().compareTo(o2.toString());
+            }
+        });
+        System.out.println(petlist);
 
 
     }
@@ -55,13 +60,19 @@ class Pets {
         return newpet;
 
     }
-//    public static Pets searchPet() {
+    public static Pets searchPet() {
+
+
+        return null;
+    }
+//    public static Pets setPet() {
 //
-//
-//        return null;
 //    }
-
-
+//
+//    public static Pets sortPet() {
+//
+//
+//    }
 
 
 }
