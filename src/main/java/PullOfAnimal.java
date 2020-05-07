@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 class Pets {
     private static Pets addPet;
@@ -39,10 +40,9 @@ class Pets {
         petlist.add(addPet());
         System.out.println(petlist);
 //        petlist.contains(searchPet());
-        petlist.stream()
-                .filter(Pets -> Pets.namePet.equals("Peach"))
-                .findFirst()
-                .orElse(null);
+//        petlist.stream()
+//                .filter(Pets -> Pets.namePet.equals("Peache"))
+//                .collect(Collectors.toList());
 
 
 
@@ -55,11 +55,13 @@ class Pets {
         return newpet;
 
     }
-    public static Pets searchPet() {
+//    public static Pets searchPet() {
+//
+//
+//        return null;
+//    }
 
 
-        return null;
-    }
 
 
 }
