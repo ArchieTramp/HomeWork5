@@ -1,78 +1,43 @@
 import java.util.*;
-import java.util.stream.Collectors;
 
 class Pets {
-    private static Pets addPet;
+    private static final Object UID = UUID.randomUUID();
+    private Object Pet;
 
-    public Pets(long uid, String namePet, String namePerson, int weight) {
 
-        this.uid = UUID.randomUUID();
-        this.namePet = namePet;
-        this.namePerson = namePerson;
-        this.weight = weight;
-    }
-    private UUID uid;
-    private String namePet;
-    private String namePerson;
-    private int weight;
-
-    public Pets(ArrayList<Pets> petlist) {
-
-    }
-
-    @Override
-    public String toString() {
-        return uid + " " + namePet+ " " + namePerson+ " " + weight;
-    }
-    List<Pets> petlist = new ArrayList<Pets>();
+    static HashMap<Object, Pet> petMap = new HashMap<Object, Pet>();
 
     public static void main(String [] args) {
 
+        petMap.put(UID, new Pet("Tortic", "Mark", 800));
+        petMap.put(UID, new Pet("Sonya", "Arch",  1400));
+        petMap.put(UID, new Pet("Iris", "Kate",  4500));
+        petMap.put(UID, new Pet("Peach", "Adele",  8000));
 
-
-        petlist.add(new Pets(1329, "Tortic", "Mark", 300));
-        petlist.add(new Pets(3218, "Sonya", "Arch", 1200));
-        petlist.add(new Pets(1324, "Iris", "Kate", 3000));
-        petlist.add(new Pets(9876, "Peach", "Adele", 8000));
-
-        System.out.println(petlist);
-        petlist.add(addPet());
-        System.out.println(petlist);
-//        petlist.contains(searchPet());
-//        petlist.stream()
-//                .filter(Pets -> Pets.namePet.equals("Peache"))
-//                .collect(Collectors.toList());
-        Collections.sort(petlist, new Comparator<Pets>() {
-            @Override
-            public int compare(Pets o1, Pets o2) {
-                return o1.toString().compareTo(o2.toString());
-            }
-        });
-        System.out.println(petlist);
-
+        for(Map.Entry<Object, Pet> entry: petMap.entrySet()) {
+            System.out.println(entry.getKey() + " - " + entry.getValue());
+        }
+//        petMap.add(addPet());
+//        sortPet();
 
     }
 
 
-    public static Pets addPet() {
-
-        Pets newpet = new Pets(0000,"Barsik","MisterX", 2800);
-        return newpet;
-
-    }
-    public static Pets searchPet() {
-
-
-        return null;
-    }
-//    public static Pets setPet() {
+//    public static Pets addPet() {
 //
+//        Pets newpet = new Pets(0000,"Barsik","MisterX", 2800);
+//        return newpet;
 //    }
 //
 //    public static Pets sortPet() {
-//
-//
+//        Collections.sort(petMap, new Comparator<Pets>() {
+//            @Override
+//            public int compare(Pets o1, Pets o2) {
+//                return o1.toString().compareTo(o2.toString());
+//            }
+//        });
+//        System.out.println(petMap);
+//        return null;
 //    }
-
 
 }
