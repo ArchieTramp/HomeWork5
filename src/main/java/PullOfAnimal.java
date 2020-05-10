@@ -1,43 +1,61 @@
 import java.util.*;
 
-class Pets {
-    private static final Object UID = UUID.randomUUID();
-    private Object Pet;
+class Pets implements Comparable<Pets> {
 
+    public static Map<Integer, Pet> petMap = new HashMap<>();
 
-    static HashMap<Object, Pet> petMap = new HashMap<Object, Pet>();
+    public static void main(String[] args) {
 
-    public static void main(String [] args) {
+        petMap.put(1248, new Pet("Tortic", "Mark", 800));
+        petMap.put(1578, new Pet("Sonya", "Arch", 1400));
+        petMap.put(3690, new Pet("Iris", "Kate", 4500));
+        petMap.put(4587, new Pet("Peach", "Adele", 8000));
 
-        petMap.put(UID, new Pet("Tortic", "Mark", 800));
-        petMap.put(UID, new Pet("Sonya", "Arch",  1400));
-        petMap.put(UID, new Pet("Iris", "Kate",  4500));
-        petMap.put(UID, new Pet("Peach", "Adele",  8000));
-
-        for(Map.Entry<Object, Pet> entry: petMap.entrySet()) {
+        for (Map.Entry<Integer, Pet> entry : petMap.entrySet()) {
             System.out.println(entry.getKey() + " - " + entry.getValue());
         }
-//        petMap.add(addPet());
-//        sortPet();
+
+        System.out.print("Задайте новый 4хзначный ID для животного - ");
+        Scanner scan = new Scanner(System.in);
+        int addID = scan.nextInt();
+        petMap.put(addID, addPet());
+        System.out.println(petMap);
+
+
+        changePet();
+
+//        searchPet();
+
+        sortPet();
+
+
+
+    }
+
+    public static Pet addPet() {
+        Pet newpet = new Pet("Cesar", "Ivan", 2000);
+        return newpet;
+    }
+
+    public static void changePet() {
+        petMap.put(1248, new Pet("Tortic", "Mark", 950));
+        System.out.println(petMap);
+    }
+
+    public static void searchPet() {
+
+    }
+
+    public static void sortPet() {
+        TreeMap<String, Pets> sorted = new TreeMap(petMap);
+        System.out.println(sorted);
 
     }
 
 
-//    public static Pets addPet() {
-//
-//        Pets newpet = new Pets(0000,"Barsik","MisterX", 2800);
-//        return newpet;
-//    }
-//
-//    public static Pets sortPet() {
-//        Collections.sort(petMap, new Comparator<Pets>() {
-//            @Override
-//            public int compare(Pets o1, Pets o2) {
-//                return o1.toString().compareTo(o2.toString());
-//            }
-//        });
-//        System.out.println(petMap);
-//        return null;
-//    }
 
+    @Override
+    public int compareTo(Pets o) {
+        return 0;
+    }
 }
