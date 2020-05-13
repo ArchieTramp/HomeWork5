@@ -3,24 +3,34 @@ import java.util.stream.Collectors;
 
 class Pets implements Comparable<Pets> {
 
-    public Map<String, Pet> petMap = new HashMap<>();
-    public Map<Integer, Pet> idpetMap = new HashMap<>();
+    public Map<String, Pet> petMap = new HashMap<String, Pet>();
+    public Map<Integer, Pet> idpetMap = new HashMap<Integer, Pet>();
 
     public static void main(String[] args) {
 
         Pets pets = new Pets();
+        List<Pet> petList = new ArrayList<>();
 
-        pets.petMap.put("Tortic", new Pet("Mark", 800));
-        pets.petMap.put("Sonya", new Pet("Arch", 1400));
-        pets.petMap.put("Iris", new Pet( "Kate", 4500));
-        pets.petMap.put("Peach", new Pet( "Adele", 8000));
+        petList.add(new Pet("Mark", 800));
+        petList.add(new Pet("Arch", 1400));
+        petList.add(new Pet("Kate", 4500));
+        petList.add(new Pet("Adele", 8000));
+
+        Pet[] array = petList.toArray(new Pet[0]);
+        System.out.println(Arrays.toString(array));
 
 
-        pets.idpetMap.put(1147, new Pet("Mark", 800));
-        pets.idpetMap.put(2289, new Pet("Arch", 1400));
-        pets.idpetMap.put(9678, new Pet("Kate", 4500));
-        pets.idpetMap.put(4876, new Pet("Adele", 8000));
 
+        pets.petMap.put("Tortic", petList.get(0));
+        pets.petMap.put("Sonya", petList.get(1));
+        pets.petMap.put("Iris", petList.get(2));
+        pets.petMap.put("Peach", petList.get(3));
+
+
+        pets.idpetMap.put(1147, petList.get(0));
+        pets.idpetMap.put(2289, petList.get(1));
+        pets.idpetMap.put(9678, petList.get(2));
+        pets.idpetMap.put(4876, petList.get(3));
 
 
         for (Map.Entry<String, Pet> entry : pets.petMap.entrySet()) {
