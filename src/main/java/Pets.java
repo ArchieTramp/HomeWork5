@@ -5,32 +5,34 @@ class Pets implements Comparable<Pets> {
 
     public Map<String, Pet> petMap = new HashMap<String, Pet>();
     public Map<Integer, Pet> idpetMap = new HashMap<Integer, Pet>();
+    public List<Pet> petList = new ArrayList<>();
 
     public static void main(String[] args) {
 
         Pets pets = new Pets();
-        List<Pet> petList = new ArrayList<>();
 
-        petList.add(new Pet("Mark", 800));
-        petList.add(new Pet("Arch", 1400));
-        petList.add(new Pet("Kate", 4500));
-        petList.add(new Pet("Adele", 8000));
+        pets.petList.add(new Pet("Mark", 800));
+        pets.petList.add(new Pet("Arch", 1400));
+        pets.petList.add(new Pet("Kate", 4500));
+        pets.petList.add(new Pet("Adele", 8000));
 
-        Pet[] array = petList.toArray(new Pet[0]);
+        Pet[] array = pets.petList.toArray(new Pet[0]);
         System.out.println(Arrays.toString(array));
 
+        pets.stream.collect(Collectors.toMap());
+        pets.strema.collect(Collectors.groupingBy());
 
 
-        pets.petMap.put("Tortic", petList.get(0));
-        pets.petMap.put("Sonya", petList.get(1));
-        pets.petMap.put("Iris", petList.get(2));
-        pets.petMap.put("Peach", petList.get(3));
+        pets.petMap.put("Tortic", pets.petList.get(0));
+        pets.petMap.put("Sonya", pets.petList.get(1));
+        pets.petMap.put("Iris", pets.petList.get(2));
+        pets.petMap.put("Peach", pets.petList.get(3));
 
 
-        pets.idpetMap.put(1147, petList.get(0));
-        pets.idpetMap.put(2289, petList.get(1));
-        pets.idpetMap.put(9678, petList.get(2));
-        pets.idpetMap.put(4876, petList.get(3));
+        pets.idpetMap.put(1147, pets.petList.get(0));
+        pets.idpetMap.put(2289, pets.petList.get(1));
+        pets.idpetMap.put(9678, pets.petList.get(2));
+        pets.idpetMap.put(4876, pets.petList.get(3));
 
 
         for (Map.Entry<String, Pet> entry : pets.petMap.entrySet()) {
@@ -41,34 +43,33 @@ class Pets implements Comparable<Pets> {
         }
 
 
+        pets.addPet();
 
-
-
-
-//        pets.addPet();
-//
 //        pets.searchPet();
 //
-//        pets.changePet();
+        pets.changePet();
 //
-//        pets.sortPet();
+        pets.sortPet();
 
 
 
     }
 
-//    public void addPet() {
-//
-//        petMap.putIfAbsent(1147, new Pet("Cesar", "Ivan", 2000));
-//        petsearchMap.putIfAbsent("Cesar", new Person("Ivan", "man", 45));
-//    }
-//
-//    public void changePet() {
-//
-//        petMap.put(1248, new Pet("Tortic", "Mark", 950));
-//        petsearchMap.put("Tortic", new Person("Mark", "man", 4));
-//
-//    }
+    public void addPet() {
+
+        petList.add(new Pet("Ivan", 4500));
+        petMap.put("Cesar", petList.get(4));
+        idpetMap.put(2257, petList.get(4));
+
+    }
+
+    public void changePet() {
+
+        /*изменить эллемент массива пет*/
+        petList.set(0, new Pet("Mark", 950));
+        petMap.put("Tortic", petList.get(0));
+        idpetMap.put(1147, petList.get(0));
+           }
 //
 //    public void searchPet() {
 //
@@ -76,13 +77,13 @@ class Pets implements Comparable<Pets> {
 //
 //    }
 //
-//    public void sortPet() {
-//
-//        TreeMap<String, Pets> sorted = new TreeMap(petMap);
-//        TreeMap<String,Pets> sortedq = new TreeMap(petsearchMap);
-//        System.out.println(sorted);
-//        System.out.println(sortedq);
-//    }
+    public void sortPet() {
+
+        TreeMap<String, Pets> sorted = new TreeMap(petMap);
+        TreeMap<String, Pets> sortedq = new TreeMap(idpetMap);
+        System.out.println(sorted);
+        System.out.println(sortedq);
+    }
 
 
 
