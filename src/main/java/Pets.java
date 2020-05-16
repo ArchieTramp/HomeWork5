@@ -1,6 +1,6 @@
 /**
  * @author Artur Gilyazov
- *Разработать программу – картотеку домашних животных. У каждого животного есть уникальный идентификационный номер,
+ * Разработать программу – картотеку домашних животных. У каждого животного есть уникальный идентификационный номер,
  * кличка, хозяин (объект класс Person с полями – имя, возраст, пол), вес.
  * Реализовать методы добавления, поиска, изменения и вывода на экран отсортированной информации.
  */
@@ -13,7 +13,7 @@ class Pets {
 
     protected static Map<String, Pet> petMap = new HashMap<String, Pet>();
     protected static Map<Integer, Pet> idpetMap = new HashMap<Integer, Pet>();
-    protected List<Pet> petList = new ArrayList<>();
+    public List<Pet> petList = new ArrayList<>();
 
     public static void main(String[] args) {
 
@@ -52,7 +52,8 @@ class Pets {
         pets.sortPet();
 
     }
-/** Метод добавления животного в список*/
+
+    /** Метод добавления животного в список*/
 
     public void addPet() {
 
@@ -60,21 +61,24 @@ class Pets {
         petMap.put("Cesar", petList.get(4));
         idpetMap.put(2257, petList.get(4));
     }
-/** Метод замены информации животного по кличке */
+
+    /** Метод замены информации животного по кличке */
 
     public void changePet() {
 
         petList.set(0, new Pet("Mark", 950));
         petMap.put("Tortic", petList.get(0));
         idpetMap.put(1147, petList.get(0));
-           }
-/** Метод поиска животного по кличке */
+    }
+
+    /** Метод поиска животного по кличке */
 
     public void searchPet() {
 
         System.out.println(petMap.get("Tortic"));
     }
-/** Метод сортировки и вывода данных */
+
+    /** Метод сортировки и вывода данных */
 
     public void sortPet() {
 
@@ -88,7 +92,7 @@ class Pets {
 
 /** Класс реализующий создание данных о животном */
 
-class Pet implements Comparable<Pet>{
+class Pet implements Comparable<Pet> {
     public Pet(String personName, int weight) {
         this.personName = personName;
         this.weight = weight;
