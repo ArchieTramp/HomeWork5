@@ -1,11 +1,19 @@
+/**
+ * @author Artur Gilyazov
+ *Разработать программу – картотеку домашних животных. У каждого животного есть уникальный идентификационный номер,
+ * кличка, хозяин (объект класс Person с полями – имя, возраст, пол), вес.
+ * Реализовать методы добавления, поиска, изменения и вывода на экран отсортированной информации.
+ */
+
 import java.util.*;
-import java.util.stream.Collectors;
 
-class Pets implements Comparable<Pets> {
+/** Основной класс реализации */
 
-    public Map<String, Pet> petMap = new HashMap<String, Pet>();
-    public Map<Integer, Pet> idpetMap = new HashMap<Integer, Pet>();
-    public List<Pet> petList = new ArrayList<>();
+class Pets {
+
+    protected static Map<String, Pet> petMap = new HashMap<String, Pet>();
+    protected static Map<Integer, Pet> idpetMap = new HashMap<Integer, Pet>();
+    protected List<Pet> petList = new ArrayList<>();
 
     public static void main(String[] args) {
 
@@ -16,67 +24,58 @@ class Pets implements Comparable<Pets> {
         pets.petList.add(new Pet("Kate", 4500));
         pets.petList.add(new Pet("Adele", 8000));
 
-        Pet[] array = pets.petList.toArray(new Pet[0]);
-        System.out.println(Arrays.toString(array));
 
-        pets.stream.collect(Collectors.toMap());
-        pets.strema.collect(Collectors.groupingBy());
+        petMap.put("Tortic", pets.petList.get(0));
+        petMap.put("Sonya", pets.petList.get(1));
+        petMap.put("Iris", pets.petList.get(2));
+        petMap.put("Peach", pets.petList.get(3));
 
+        idpetMap.put(1147, pets.petList.get(0));
+        idpetMap.put(2289, pets.petList.get(1));
+        idpetMap.put(9678, pets.petList.get(2));
+        idpetMap.put(4876, pets.petList.get(3));
 
-        pets.petMap.put("Tortic", pets.petList.get(0));
-        pets.petMap.put("Sonya", pets.petList.get(1));
-        pets.petMap.put("Iris", pets.petList.get(2));
-        pets.petMap.put("Peach", pets.petList.get(3));
-
-
-        pets.idpetMap.put(1147, pets.petList.get(0));
-        pets.idpetMap.put(2289, pets.petList.get(1));
-        pets.idpetMap.put(9678, pets.petList.get(2));
-        pets.idpetMap.put(4876, pets.petList.get(3));
-
-
-        for (Map.Entry<String, Pet> entry : pets.petMap.entrySet()) {
+        for (Map.Entry<String, Pet> entry : petMap.entrySet()) {
             System.out.println(entry.getKey() + " - " + entry.getValue());
         }
-        for (Map.Entry<Integer, Pet> entry : pets.idpetMap.entrySet()) {
+        for (Map.Entry<Integer, Pet> entry : idpetMap.entrySet()) {
             System.out.println(entry.getKey() + " - " + entry.getValue());
         }
 
 
         pets.addPet();
 
-//        pets.searchPet();
-//
+        pets.searchPet();
+
         pets.changePet();
-//
+
         pets.sortPet();
 
-
-
     }
+/** Метод добавления животного в список*/
 
     public void addPet() {
 
         petList.add(new Pet("Ivan", 4500));
         petMap.put("Cesar", petList.get(4));
         idpetMap.put(2257, petList.get(4));
-
     }
+/** Метод замены информации животного по кличке */
 
     public void changePet() {
 
-        /*изменить эллемент массива пет*/
         petList.set(0, new Pet("Mark", 950));
         petMap.put("Tortic", petList.get(0));
         idpetMap.put(1147, petList.get(0));
            }
-//
-//    public void searchPet() {
-//
-//
-//
-//    }
-//
+/** Метод поиска животного по кличке */
+
+    public void searchPet() {
+
+        System.out.println(petMap.get("Tortic"));
+    }
+/** Метод сортировки и вывода данных */
+
     public void sortPet() {
 
         TreeMap<String, Pets> sorted = new TreeMap(petMap);
@@ -85,10 +84,25 @@ class Pets implements Comparable<Pets> {
         System.out.println(sortedq);
     }
 
+}
+/** Класс реализует создание данных о животном */
 
+class Pet implements Comparable<Pet>{
+    public Pet(String personName, int weight) {
+        this.personName = personName;
+        this.weight = weight;
+    }
+
+    private final String personName;
+    private final int weight;
 
     @Override
-    public int compareTo(Pets o) {
+    public String toString() {
+        return /* petName + " " +*/ personName + " " + weight;
+    }
+
+    @Override
+    public int compareTo(Pet o) {
         return 0;
     }
 }
