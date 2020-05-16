@@ -85,7 +85,8 @@ class Pets {
     }
 
 }
-/** Класс реализует создание данных о животном */
+
+/** Класс реализующий создание данных о животном */
 
 class Pet implements Comparable<Pet>{
     public Pet(String personName, int weight) {
