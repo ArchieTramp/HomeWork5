@@ -13,45 +13,45 @@ class Pets {
 
     protected static Map<String, Pet> petMap = new HashMap<String, Pet>();
     protected static Map<Integer, Pet> idpetMap = new HashMap<Integer, Pet>();
-    public List<Pet> petList = new ArrayList<>();
+    protected List<Pet> petList = new ArrayList<>();
 
-    public static void main(String[] args) {
-
-        Pets pets = new Pets();
-
-        pets.petList.add(new Pet("Mark", 800));
-        pets.petList.add(new Pet("Arch", 1400));
-        pets.petList.add(new Pet("Kate", 4500));
-        pets.petList.add(new Pet("Adele", 8000));
-
-
-        petMap.put("Tortic", pets.petList.get(0));
-        petMap.put("Sonya", pets.petList.get(1));
-        petMap.put("Iris", pets.petList.get(2));
-        petMap.put("Peach", pets.petList.get(3));
-
-        idpetMap.put(1147, pets.petList.get(0));
-        idpetMap.put(2289, pets.petList.get(1));
-        idpetMap.put(9678, pets.petList.get(2));
-        idpetMap.put(4876, pets.petList.get(3));
-
-        for (Map.Entry<String, Pet> entry : petMap.entrySet()) {
-            System.out.println(entry.getKey() + " - " + entry.getValue());
-        }
-        for (Map.Entry<Integer, Pet> entry : idpetMap.entrySet()) {
-            System.out.println(entry.getKey() + " - " + entry.getValue());
-        }
-
-
-        pets.addPet();
-
-        pets.searchPet();
-
-        pets.changePet();
-
-        pets.sortPet();
-
-    }
+//    public static void main(String[] args) {
+//
+//        Pets pets = new Pets();
+//
+//        pets.petList.add(new Pet("Mark", 800));
+//        pets.petList.add(new Pet("Arch", 1400));
+//        pets.petList.add(new Pet("Kate", 4500));
+//        pets.petList.add(new Pet("Adele", 8000));
+//
+//
+//        petMap.put("Tortic", pets.petList.get(0));
+//        petMap.put("Sonya", pets.petList.get(1));
+//        petMap.put("Iris", pets.petList.get(2));
+//        petMap.put("Peach", pets.petList.get(3));
+//
+//        idpetMap.put(1147, pets.petList.get(0));
+//        idpetMap.put(2289, pets.petList.get(1));
+//        idpetMap.put(9678, pets.petList.get(2));
+//        idpetMap.put(4876, pets.petList.get(3));
+//
+//        for (Map.Entry<String, Pet> entry : petMap.entrySet()) {
+//            System.out.println(entry.getKey() + " - " + entry.getValue());
+//        }
+//        for (Map.Entry<Integer, Pet> entry : idpetMap.entrySet()) {
+//            System.out.println(entry.getKey() + " - " + entry.getValue());
+//        }
+//
+//
+//        pets.addPet();
+//
+//        pets.searchPet();
+//
+//        pets.changePet();
+//
+//        pets.sortPet();
+//
+//    }
 
     /** Метод добавления животного в список*/
 
@@ -109,5 +109,45 @@ class Pet implements Comparable<Pet> {
     @Override
     public int compareTo(Pet o) {
         return 0;
+    }
+}
+
+class Start {
+    public static void main(String[] args) {
+
+        Pets pets = new Pets();
+
+        pets.petList.add(new Pet("Mark", 800));
+        pets.petList.add(new Pet("Arch", 1400));
+        pets.petList.add(new Pet("Kate", 4500));
+        pets.petList.add(new Pet("Adele", 8000));
+
+
+        Pets.petMap.put("Tortic", pets.petList.get(0));
+        Pets.petMap.put("Sonya", pets.petList.get(1));
+        Pets.petMap.put("Iris", pets.petList.get(2));
+        Pets.petMap.put("Peach", pets.petList.get(3));
+
+        Pets.idpetMap.put(1147, pets.petList.get(0));
+        Pets.idpetMap.put(2289, pets.petList.get(1));
+        Pets.idpetMap.put(9678, pets.petList.get(2));
+        Pets.idpetMap.put(4876, pets.petList.get(3));
+
+        for (Map.Entry<String, Pet> entry : Pets.petMap.entrySet()) {
+            System.out.println(entry.getKey() + " - " + entry.getValue());
+        }
+        for (Map.Entry<Integer, Pet> entry : Pets.idpetMap.entrySet()) {
+            System.out.println(entry.getKey() + " - " + entry.getValue());
+        }
+
+
+        pets.addPet();
+
+        pets.searchPet();
+
+        pets.changePet();
+
+        pets.sortPet();
+
     }
 }
