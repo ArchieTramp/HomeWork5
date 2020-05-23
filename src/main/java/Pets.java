@@ -30,12 +30,25 @@ class Pets {
 
     /**
      * Метод замены информации животного по кличке
+     *
+     * @return
      */
+
+    public static <Integer> Integer findKey(Map<Integer, Pet> map, Pet value) {
+        return (Integer) map.entrySet().stream()
+                .filter(entry -> entry.getValue().equals(value))
+                .findAny();
+    }
 
     public void changePet(Pet pet) {
 
+        String q = pet.getPetName();
+        Pet w = petMap.get(q);
+        System.out.println(findKey(idpetMap, w));
+
+        idpetMap.put(findKey(idpetMap, w), pet);
         petMap.put(pet.getPetName(), pet);
-        idpetMap.put(petList.size(), pet);
+
 
     }
 
@@ -46,7 +59,7 @@ class Pets {
     public Pet searchPet(String petname) {
 
         System.out.print("Данные питомца - ");
-        return petMap.get("Tortic");
+        return petMap.get(petname);
 
     }
 
@@ -119,13 +132,15 @@ class Start {
         pets.addPet(new Pet("Sonya", "Arch", 1400));
         pets.addPet(new Pet("Iris", "Kate", 4500));
         pets.addPet(new Pet("Peach", "Adele", 8000));
-
+        pets.addPet(new Pet("Cesar", "Ivan", 12000));
 
         System.out.println(pets.searchPet("Tortic"));
+        System.out.println(pets.searchPet("Sonya"));
 
-        pets.changePet(new Pet("Tortic", "Mark", 950));
+        pets.changePet(new Pet("Sonya", "Arch", 950));
 
-        System.out.println(pets.searchPet("Tortic")); /* проверяю внесение изменений */
+        System.out.println(pets.searchPet("Tortic"));
+        System.out.println(pets.searchPet("Sonya"));
 
         pets.dump();
 
