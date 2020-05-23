@@ -125,7 +125,7 @@ class Start {
 
         pets.changePet(new Pet("Tortic", "Mark", 950));
 
-        System.out.println(pets.searchPet("Tortic"));
+        System.out.println(pets.searchPet("Tortic")); /* проверяю внесение изменений */
 
         pets.dump();
 
