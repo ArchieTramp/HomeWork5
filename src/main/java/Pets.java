@@ -7,103 +7,100 @@
 
 import java.util.*;
 
-/** Основной класс реализации */
+/**
+ * Основной класс реализации
+ */
 
 class Pets {
 
-    protected static Map<String, Pet> petMap = new HashMap<String, Pet>();
-    protected static Map<Integer, Pet> idpetMap = new HashMap<Integer, Pet>();
-    protected List<Pet> petList = new ArrayList<>();
+    private Map<String, Pet> petMap = new HashMap<String, Pet>();
+    private Map<Integer, Pet> idpetMap = new HashMap<Integer, Pet>();
+    private List<Pet> petList = new ArrayList<>();
 
-//    public static void main(String[] args) {
-//
-//        Pets pets = new Pets();
-//
-//        pets.petList.add(new Pet("Mark", 800));
-//        pets.petList.add(new Pet("Arch", 1400));
-//        pets.petList.add(new Pet("Kate", 4500));
-//        pets.petList.add(new Pet("Adele", 8000));
-//
-//
-//        petMap.put("Tortic", pets.petList.get(0));
-//        petMap.put("Sonya", pets.petList.get(1));
-//        petMap.put("Iris", pets.petList.get(2));
-//        petMap.put("Peach", pets.petList.get(3));
-//
-//        idpetMap.put(1147, pets.petList.get(0));
-//        idpetMap.put(2289, pets.petList.get(1));
-//        idpetMap.put(9678, pets.petList.get(2));
-//        idpetMap.put(4876, pets.petList.get(3));
-//
-//        for (Map.Entry<String, Pet> entry : petMap.entrySet()) {
-//            System.out.println(entry.getKey() + " - " + entry.getValue());
-//        }
-//        for (Map.Entry<Integer, Pet> entry : idpetMap.entrySet()) {
-//            System.out.println(entry.getKey() + " - " + entry.getValue());
-//        }
-//
-//
-//        pets.addPet();
-//
-//        pets.searchPet();
-//
-//        pets.changePet();
-//
-//        pets.sortPet();
-//
-//    }
+    /**
+     * Метод добавления животного в список
+     */
 
-    /** Метод добавления животного в список*/
+    public void addPet(Pet pet) {
 
-    public void addPet() {
-
-        petList.add(new Pet("Ivan", 4500));
-        petMap.put("Cesar", petList.get(4));
-        idpetMap.put(2257, petList.get(4));
+        petList.add(pet);
+        petMap.put(pet.getPetName(), pet);
+        idpetMap.put(petList.size(), pet);
     }
 
-    /** Метод замены информации животного по кличке */
+    /**
+     * Метод замены информации животного по кличке
+     */
 
-    public void changePet() {
+    public void changePet(Pet pet) {
 
-        petList.set(0, new Pet("Mark", 950));
-        petMap.put("Tortic", petList.get(0));
-        idpetMap.put(1147, petList.get(0));
+        petMap.put(pet.getPetName(), pet);
+        idpetMap.put(petList.size(), pet);
+
     }
 
-    /** Метод поиска животного по кличке */
+    /**
+     * Метод поиска животного по кличке
+     */
 
-    public void searchPet() {
+    public Pet searchPet(String petname) {
 
-        System.out.println(petMap.get("Tortic"));
+        System.out.print("Данные питомца - ");
+        return petMap.get("Tortic");
+
     }
 
-    /** Метод сортировки и вывода данных */
+    /**
+     * Метод сортировки и вывода данных
+     */
 
-    public void sortPet() {
+    public void dump() {
+        TreeMap<String, Pets> petsTreeMap = new TreeMap(petMap);
+        TreeMap<Integer, Pets> petsidTreeMap = new TreeMap(idpetMap);
 
-        TreeMap<String, Pets> sorted = new TreeMap(petMap);
-        TreeMap<String, Pets> sortedq = new TreeMap(idpetMap);
-        System.out.println(sorted);
-        System.out.println(sortedq);
+        for (Map.Entry<String, Pets> entry : petsTreeMap.entrySet()) {
+            System.out.println(entry.getKey() + " - " + entry.getValue());
+        }
+        for (Map.Entry<Integer, Pets> entry : petsidTreeMap.entrySet()) {
+            System.out.println(entry.getKey() + " - " + entry.getValue());
+        }
+
     }
+
 
 }
 
-/** Класс реализующий создание данных о животном */
+/**
+ * Класс реализующий создание данных о животном
+ */
 
 class Pet implements Comparable<Pet> {
-    public Pet(String personName, int weight) {
+
+    private final String petName;
+    private final int weight;
+    private final String personName;
+
+    public Pet(String petName, String personName, int weight) {
         this.personName = personName;
+        this.petName = petName;
         this.weight = weight;
     }
 
-    private final String personName;
-    private final int weight;
+    public String getPetName() {
+        return petName;
+    }
+
+    public String getPersonName() {
+        return personName;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
 
     @Override
     public String toString() {
-        return /* petName + " " +*/ personName + " " + weight;
+        return petName + " " + personName + " " + weight;
     }
 
     @Override
@@ -113,41 +110,24 @@ class Pet implements Comparable<Pet> {
 }
 
 class Start {
+
     public static void main(String[] args) {
 
         Pets pets = new Pets();
 
-        pets.petList.add(new Pet("Mark", 800));
-        pets.petList.add(new Pet("Arch", 1400));
-        pets.petList.add(new Pet("Kate", 4500));
-        pets.petList.add(new Pet("Adele", 8000));
+        pets.addPet(new Pet("Tortic", "Mark", 800));
+        pets.addPet(new Pet("Sonya", "Arch", 1400));
+        pets.addPet(new Pet("Iris", "Kate", 4500));
+        pets.addPet(new Pet("Peach", "Adele", 8000));
 
 
-        Pets.petMap.put("Tortic", pets.petList.get(0));
-        Pets.petMap.put("Sonya", pets.petList.get(1));
-        Pets.petMap.put("Iris", pets.petList.get(2));
-        Pets.petMap.put("Peach", pets.petList.get(3));
+        System.out.println(pets.searchPet("Tortic"));
 
-        Pets.idpetMap.put(1147, pets.petList.get(0));
-        Pets.idpetMap.put(2289, pets.petList.get(1));
-        Pets.idpetMap.put(9678, pets.petList.get(2));
-        Pets.idpetMap.put(4876, pets.petList.get(3));
+        pets.changePet(new Pet("Tortic", "Mark", 950));
 
-        for (Map.Entry<String, Pet> entry : Pets.petMap.entrySet()) {
-            System.out.println(entry.getKey() + " - " + entry.getValue());
-        }
-        for (Map.Entry<Integer, Pet> entry : Pets.idpetMap.entrySet()) {
-            System.out.println(entry.getKey() + " - " + entry.getValue());
-        }
+        System.out.println(pets.searchPet("Tortic"));
 
-
-        pets.addPet();
-
-        pets.searchPet();
-
-        pets.changePet();
-
-        pets.sortPet();
+        pets.dump();
 
     }
 }
