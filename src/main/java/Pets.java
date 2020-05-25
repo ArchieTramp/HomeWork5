@@ -16,6 +16,7 @@ class Pets {
     private Map<String, Pet> petMap = new HashMap<String, Pet>();
     private Map<Integer, Pet> idpetMap = new HashMap<Integer, Pet>();
     private List<Pet> petList = new ArrayList<>();
+    private int z;
 
     /**
      * Метод добавления животного в список
@@ -25,7 +26,7 @@ class Pets {
 
         petList.add(pet);
         petMap.put(pet.getPetName(), pet);
-        idpetMap.put(petList.size(), pet);
+        idpetMap.put(pet.setId(petList.size()), pet);
     }
 
     /**
@@ -34,23 +35,23 @@ class Pets {
      * @return
      */
 
-    public static <Integer> Integer findKey(Map<Integer, Pet> map, Pet value) {
-        return (Integer) map.entrySet().stream()
-                .filter(entry -> entry.getValue().equals(value))
-                .findAny();
+    private int findKey(Pet value) {
+        return value.getId();
     }
 
     public void changePet(Pet pet) {
 
         String q = pet.getPetName();
         Pet w = petMap.get(q);
-        System.out.println(findKey(idpetMap, w));
+        z = findKey(w);
 
-        idpetMap.put(findKey(idpetMap, w), pet);
+
+        idpetMap.put(z, pet);
         petMap.put(pet.getPetName(), pet);
 
 
     }
+
 
     /**
      * Метод поиска животного по кличке
@@ -92,11 +93,13 @@ class Pet implements Comparable<Pet> {
     private final String petName;
     private final int weight;
     private final String personName;
+    private int id;
 
     public Pet(String petName, String personName, int weight) {
         this.personName = personName;
         this.petName = petName;
         this.weight = weight;
+
     }
 
     public String getPetName() {
@@ -120,6 +123,15 @@ class Pet implements Comparable<Pet> {
     public int compareTo(Pet o) {
         return 0;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public int setId(int id) {
+        this.id = id;
+        return id;
+    }
 }
 
 class Start {
@@ -134,13 +146,9 @@ class Start {
         pets.addPet(new Pet("Peach", "Adele", 8000));
         pets.addPet(new Pet("Cesar", "Ivan", 12000));
 
-        System.out.println(pets.searchPet("Tortic"));
-        System.out.println(pets.searchPet("Sonya"));
+        pets.dump();
 
         pets.changePet(new Pet("Sonya", "Arch", 950));
-
-        System.out.println(pets.searchPet("Tortic"));
-        System.out.println(pets.searchPet("Sonya"));
 
         pets.dump();
 
